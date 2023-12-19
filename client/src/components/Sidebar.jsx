@@ -30,7 +30,6 @@ const Sidebar = ({ changeRoom }) => {
 
   function handleOnClick(email) {
     changeRoom(email);
-    console.log(`pindah room`);
   }
 
   useEffect(() => {
