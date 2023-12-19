@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import {
+  collection,
+  getDoc,
+  onSnapshot,
+  query,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
 const Sidebar = () => {
@@ -7,15 +14,35 @@ const Sidebar = () => {
 
   const roomsRef = collection(db, "rooms");
 
+  async function upsertRoom() {
+    const docRef = doc(db, "rooms", localStorage.email);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      await setDoc(doc(roomsRef, localStorage.email), {
+        name: localStorage.name,
+        email: localStorage.email,
+        iconURL: localStorage.photo,
+      });
+      console.log("newRoom Created");
+    }
+  }
+
   useEffect(() => {
+    upsertRoom();
+
     const queryRooms = query(roomsRef);
-    onSnapshot(queryRooms, (snapshot) => {
+    const unsubscribeRooms = onSnapshot(queryRooms, (snapshot) => {
       let rooms = [];
       snapshot.forEach((doc) => {
         rooms.push({ ...doc.data() });
       });
       setRooms(rooms);
     });
+
+    return () => {
+      unsubscribeRooms;
+    };
   }, []);
 
   return (
@@ -33,7 +60,6 @@ const Sidebar = () => {
       <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
         {rooms &&
           rooms.map((el, i) => {
-            console.log(el);
             return (
               <div key={i}>
                 <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
@@ -45,7 +71,7 @@ const Sidebar = () => {
                     />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-lg font-semibold">{el.name}</h2>
+                    <h2 className="text-lg font-semibold">Rumah {el.name}</h2>
                     <p className="text-gray-600">testing</p>
                   </div>
                 </div>
