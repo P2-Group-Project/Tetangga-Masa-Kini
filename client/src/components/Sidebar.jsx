@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs, onSnapshot, query } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 const Sidebar = () => {
+  const [rooms, setRooms] = useState([]);
+
+  const roomsRef = collection(db, "rooms");
+
+  useEffect(() => {
+    const queryRooms = query(roomsRef);
+    onSnapshot(queryRooms, (snapshot) => {
+      let rooms = [];
+      snapshot.forEach((doc) => {
+        rooms.push({ ...doc.data() });
+      });
+      setRooms(rooms);
+    });
+  }, []);
+
   return (
     <div className="w-1/4 bg-white border-r border-gray-300">
       {/* Sidebar Header */}
@@ -14,19 +31,27 @@ const Sidebar = () => {
       </header>
 
       <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
-        <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-          <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
-            <img
-              src="https://i.pinimg.com/564x/0d/a2/0f/0da20f7ea0e8bfdea0cdd4c3d7361ea2.jpg"
-              alt="User Avatar"
-              className="w-12 h-12 rounded-full"
-            />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-lg font-semibold">moka</h2>
-            <p className="text-gray-600">testing</p>
-          </div>
-        </div>
+        {rooms &&
+          rooms.map((el, i) => {
+            console.log(el);
+            return (
+              <div key={i}>
+                <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
+                  <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
+                    <img
+                      src={el.iconURL}
+                      alt="User Avatar"
+                      className="w-12 h-12 rounded-full"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-lg font-semibold">{el.name}</h2>
+                    <p className="text-gray-600">testing</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );
