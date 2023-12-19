@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-const Sidebar = () => {
+const Sidebar = ({ changeRoom }) => {
   const [rooms, setRooms] = useState([]);
   // const [currentRoom, setCurrentRoom] = useState(null);
 
@@ -29,7 +29,7 @@ const Sidebar = () => {
   }
 
   function handleOnClick(email) {
-    // setCurrentRoom(email);
+    changeRoom(email);
     console.log(`pindah room`);
   }
 

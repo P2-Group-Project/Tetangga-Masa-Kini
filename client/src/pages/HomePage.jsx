@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatMessage from "../components/ChatMessage";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import Sidebar from "../components/Sidebar";
 
 const HomePage = () => {
   const [room, setRoom] = useState(localStorage.email);
   const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const messageRef = collection(db, "messages");
+
+  function changeRoom(destination) {
+    setRoom(destination);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,38 +39,63 @@ const HomePage = () => {
     }
   }
 
+  useEffect(() => {
+    const queryMessages = query(messageRef, where("room", "==", room));
+    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
+      let messages = [];
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data() });
+      });
+      setMessages(messages);
+    });
+
+    return () => unsubscribe();
+  }, [room]);
   return (
     <>
-      {/* Main Chat Area */}
-      <div className="flex-1">
-        {/* Chat Header */}
-        <header className="bg-white p-4 text-gray-700">
-          <h1 className="text-2xl font-semibold">moka</h1>
-        </header>
+      <div>
+        <div className="flex">
+          <Sidebar changeRoom={changeRoom} />
 
-        {/* Chat Messages */}
-        <ChatMessage />
+          {/* Main Chat Area */}
+          <div className="flex-1">
+            {/* Chat Header */}
+            <header className="bg-white p-4 text-gray-700">
+              <h1 className="text-2xl font-semibold">{room}</h1>
+            </header>
 
-        {/* Chat Input */}
-        <footer className="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4">
-          <form onSubmit={handleSubmit} className="flex items-center">
-            <input
-              onChange={(e) => {
-                setNewMessage(e.target.value);
-              }}
-              value={newMessage}
-              type="text"
-              placeholder="Type a message..."
-              className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
-            />
-            <button
-              type="submit"
-              className="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"
-            >
-              Send
-            </button>
-          </form>
-        </footer>
+            {/* Chat Messages */}
+            <div className="h-screen overflow-y-auto p-4 pb-36">
+              <div>
+                {messages &&
+                  messages.map((chat, i) => {
+                    return <ChatMessage chat={chat} key={i} />;
+                  })}
+              </div>
+            </div>
+
+            {/* Chat Input */}
+            <footer className="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4">
+              <form onSubmit={handleSubmit} className="flex items-center">
+                <input
+                  onChange={(e) => {
+                    setNewMessage(e.target.value);
+                  }}
+                  value={newMessage}
+                  type="text"
+                  placeholder="Type a message..."
+                  className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500"
+                />
+                <button
+                  type="submit"
+                  className="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"
+                >
+                  Send
+                </button>
+              </form>
+            </footer>
+          </div>
+        </div>
       </div>
     </>
   );
