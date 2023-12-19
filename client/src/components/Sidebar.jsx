@@ -11,6 +11,7 @@ import { db } from "../firebaseConfig";
 
 const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
+  // const [currentRoom, setCurrentRoom] = useState(null);
 
   const roomsRef = collection(db, "rooms");
 
@@ -24,8 +25,12 @@ const Sidebar = () => {
         email: localStorage.email,
         iconURL: localStorage.photo,
       });
-      console.log("newRoom Created");
     }
+  }
+
+  function handleOnClick(email) {
+    // setCurrentRoom(email);
+    console.log(`pindah room`);
   }
 
   useEffect(() => {
@@ -61,7 +66,12 @@ const Sidebar = () => {
         {rooms &&
           rooms.map((el, i) => {
             return (
-              <div key={i}>
+              <div
+                key={i}
+                onClick={() => {
+                  handleOnClick(el.email);
+                }}
+              >
                 <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
                   <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
                     <img
