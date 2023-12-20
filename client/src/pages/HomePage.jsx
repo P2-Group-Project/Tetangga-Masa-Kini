@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatMessage from "../components/ChatMessage";
 import {
   addDoc,
@@ -11,11 +11,20 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import Sidebar from "../components/Sidebar";
+import "../chatContainer.css"
 
 const HomePage = () => {
   const [room, setRoom] = useState(localStorage.email);
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const chatContainerRef = useRef(null)
+
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const messageRef = collection(db, "messages");
 
@@ -65,13 +74,13 @@ const HomePage = () => {
           {/* Main Chat Area */}
           <div className="flex-1 rounded-full">
             {/* Chat Header */}
-            <header className="bg-black p-4 text-white rounded-full">
+            <header className="bg-black p-4 text-white">
               <h1 className="text-2xl font-semibold">{room}</h1>
             </header>
 
             {/* Chat Messages */}
 
-            <div>
+            <div className="max-h-[1300px] overflow-y-auto hide-scrollbar" ref={chatContainerRef}>
               {messages &&
                 messages.map((chat, i) => {
                   return <ChatMessage chat={chat} key={i} />;
