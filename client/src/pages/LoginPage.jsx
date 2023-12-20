@@ -20,7 +20,7 @@ const LoginPage = () => {
     }
   }
   return (
-    <div className="min-h-screen bg-gradient-to-tl from-orange-400 to-sky-400 text-gray-100 flex justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-purple-800 via-pink-900 to-sky-900 text-gray-100 flex justify-center">
       <div className="flex min-h-screen items-center justify-center max-w-screen-xl m-0 sm:m-18">
         <div className=" max-w-screen-xl m-0 sm:m-10 bg-gray-900 border border-gray-900 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 mx-4 sm:mx-24 md:mx-34 lg:mx-56 flex items-center space-y-4 py-12 font-semibold text-gray-500 flex-col text-center">
