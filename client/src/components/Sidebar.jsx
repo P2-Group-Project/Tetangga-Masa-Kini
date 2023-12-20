@@ -53,32 +53,32 @@ const Sidebar = ({ changeRoom }) => {
   return (
     <div className="md:flex hidden flex-col w-[240px] py-10 px-4 h-full sm:w-1/4 bg-white border-r border-gray-300">
       {/* Sidebar Header */}
-      <div class="flex flex-row items-center justify-center h-12 w-full">
+      <div className="flex flex-row items-center justify-center h-12 w-full">
         {/* Logo */}
-        <div class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
+        <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
           {/* SVG or Logo Content */}
         </div>
         {/* Title */}
-        <div class="ml-2 font-bold text-2xl">NAMA USER</div>
+        <div className="ml-2 font-bold text-2xl">NAMA USER</div>
       </div>
-      <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
+      <div className="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
         {/* User Avatar */}
-        <div class="h-20 w-20 rounded-full border overflow-hidden">
+        <div className="h-20 w-20 rounded-full border overflow-hidden">
           <img
             src="https://i.pinimg.com/564x/1f/d2/51/1fd25138fe5b5dd469b33843c5c40e96.jpg"
             alt="Avatar"
-            class="h-full w-full"
+            className="h-full w-full"
           />
         </div>
         {/* User Info */}
-        <div class="text-sm font-semibold mt-2">user email</div>
-        <div class="text-xs text-gray-500">profile??</div>
-        <div class="flex flex-row items-center mt-3">
+        <div className="text-sm font-semibold mt-2">user email</div>
+        <div className="text-xs text-gray-500">profile??</div>
+        <div className="flex flex-row items-center mt-3">
           {/* Online Indicator */}
-          <div class="flex flex-col justify-center h-4 w-8 bg-indigo-500 rounded-full">
-            <div class="h-3 w-3 bg-white rounded-full self-end mr-1"></div>
+          <div className="flex flex-col justify-center h-4 w-8 bg-indigo-500 rounded-full">
+            <div className="h-3 w-3 bg-white rounded-full self-end mr-1"></div>
           </div>
-          <div class="leading-none ml-1 text-xs">Active</div>
+          <div className="leading-none ml-1 text-xs">Active</div>
         </div>
       </div>
       <header className="p-4 border-b border-gray-300 flex justify-between items-center  text-black ">
@@ -89,10 +89,10 @@ const Sidebar = ({ changeRoom }) => {
           </button>
         </div>
       </header>
-      <div class="flex flex-col mt-8">
-        <div class="flex flex-row items-center justify-between text-xs">
-          <span class="font-bold">Active Conversations</span>
-          <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
+      <div className="flex flex-col mt-8">
+        <div className="flex flex-row items-center justify-between text-xs">
+          <span className="font-bold">Active Conversations</span>
+          <span className="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
             4
           </span>
         </div>
