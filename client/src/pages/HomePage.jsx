@@ -60,12 +60,12 @@ const HomePage = () => {
           {/* Main Chat Area */}
           <div className="flex-1">
             {/* Chat Header */}
-            <header className="bg-white p-4 text-gray-700">
+            <header className="bg-black p-4 text-white">
               <h1 className="text-2xl font-semibold">{room}</h1>
             </header>
 
             {/* Chat Messages */}
-            <div className="h-screen overflow-y-auto p-4 pb-36">
+            <div className="h-screen overflow-y-auto p-4 pb-10">
               <div>
                 {messages &&
                   messages.map((chat, i) => {
@@ -75,7 +75,7 @@ const HomePage = () => {
             </div>
 
             {/* Chat Input */}
-            <footer className="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4">
+            <footer className="bg-white border-t border-gray-300 p-4 absolute bottom-0 w-3/4 ">
               <form onSubmit={handleSubmit} className="flex items-center">
                 <input
                   onChange={(e) => {
@@ -88,7 +88,7 @@ const HomePage = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-indigo-500 text-white px-4 py-2 rounded-md ml-2"
+                  className="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
                 >
                   Send
                 </button>
