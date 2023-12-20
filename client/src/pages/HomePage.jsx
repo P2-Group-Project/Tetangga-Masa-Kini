@@ -74,7 +74,7 @@ const HomePage = () => {
           {/* Main Chat Area */}
           <div className="flex-1 rounded-full">
             {/* Chat Header */}
-            <header className="bg-black p-4 text-white">
+            <header className="bg-orange-300 p-4 text-white rounded-xl mt-10 mb-1">
               <h1 className="text-2xl font-semibold">{room}</h1>
             </header>
 
@@ -88,9 +88,9 @@ const HomePage = () => {
             </div>
 
             {/* Chat Input */}
-            <footer className="bg-black border-t border-gray-300 fixed bottom-0 w-[1425px] ">
-              <form onSubmit={handleSubmit} className="flex items-center">
-                <div className="flex flex-row items-center h-16 rounded-xl bg-black w-full px-4">
+            <footer className="bg-white fixed bottom-0 w-[1425px]">
+              <form onSubmit={handleSubmit} className="flex items-center bg-white">
+                <div className="flex flex-row items-center h-16 bg-white w-full px-4">
                   <div className="flex-grow ml-4">
                     <div className="relative w-full">
                       <input
@@ -100,9 +100,9 @@ const HomePage = () => {
                         value={newMessage}
                         type="text"
                         placeholder="Type a message..."
-                        className="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+                        className="flex w-full border rounded-xl bg-gray-300 focus:outline-none focus:border-indigo-300 pl-4 h-10 text-black"
                       />
-                      <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
+                      <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-black hover:text-gray-600">
                         <svg
                           className="w-6 h-6"
                           fill="none"

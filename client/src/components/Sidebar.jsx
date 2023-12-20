@@ -51,9 +51,9 @@ const Sidebar = ({ changeRoom }) => {
   }, []);
 
   return (
-    <div className="md:flex hidden flex-col w-[240px] py-10 px-4 h-full sm:w-1/4 bg-white border-r border-gray-300">
+    <div className="md:flex hidden flex-col w-[240px] py-10 px-4 h-full sm:w-1/4 bg-white border-gray-300">
       {/* Sidebar Header */}
-      <div className="flex flex-row items-center justify-center h-12 w-full bg-orange-200 rounded-2xl">
+      <div className="flex flex-row items-center justify-center h-12 w-full bg-orange-300 rounded-2xl">
         {/* Logo */}
         <div className="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
           {/* SVG or Logo Content */}
@@ -64,7 +64,7 @@ const Sidebar = ({ changeRoom }) => {
 
         
       </div>
-      <div className="flex flex-col items-center bg-orange-200 border border-gray-200 mt-4 w-full py-6 px-4 rounded-2xl">
+      <div className="flex flex-col items-center bg-orange-300 border border-gray-200 mt-4 w-full py-6 px-4 rounded-2xl">
         {/* User Avatar */}
         <div className="h-20 w-20 rounded-full border overflow-hidden">
           <img

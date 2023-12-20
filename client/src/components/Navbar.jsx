@@ -9,7 +9,7 @@ export default function Navbar() {
   }
   return (
     <>
-<div className="navbar bg-white ">
+<div className="navbar bg-orange-300 mb-2 rounded-2xl ">
   <div className="flex-1">
     <a className="btn bg-gradient-to-tl from-orange-400 to-sky-400 text-gray-100 text-xl rounded-full">LOGO</a>
   </div>
