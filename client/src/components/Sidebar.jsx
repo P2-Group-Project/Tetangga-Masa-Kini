@@ -11,6 +11,7 @@ import { db } from "../firebaseConfig";
 
 const Sidebar = ({ changeRoom }) => {
   const [rooms, setRooms] = useState([]);
+
   // const [currentRoom, setCurrentRoom] = useState(null);
 
   const roomsRef = collection(db, "rooms");
@@ -50,43 +51,79 @@ const Sidebar = ({ changeRoom }) => {
   }, []);
 
   return (
-    <div className="w-1/4 bg-white border-r border-gray-300">
+    <div className="md:flex hidden flex-col w-[240px] py-10 px-4 h-full sm:w-1/4 bg-white border-r border-gray-300">
       {/* Sidebar Header */}
-      <header className="p-4 border-b border-gray-300 flex justify-between items-center bg-black text-white">
-        <h1 className="text-2xl font-semibold">Chat Web</h1>
+      <div class="flex flex-row items-center justify-center h-12 w-full">
+        {/* Logo */}
+        <div class="flex items-center justify-center rounded-2xl text-indigo-700 bg-indigo-100 h-10 w-10">
+          {/* SVG or Logo Content */}
+        </div>
+        {/* Title */}
+        <div class="ml-2 font-bold text-2xl">NAMA USER</div>
+      </div>
+      <div class="flex flex-col items-center bg-indigo-100 border border-gray-200 mt-4 w-full py-6 px-4 rounded-lg">
+        {/* User Avatar */}
+        <div class="h-20 w-20 rounded-full border overflow-hidden">
+          <img
+            src="https://i.pinimg.com/564x/1f/d2/51/1fd25138fe5b5dd469b33843c5c40e96.jpg"
+            alt="Avatar"
+            class="h-full w-full"
+          />
+        </div>
+        {/* User Info */}
+        <div class="text-sm font-semibold mt-2">user email</div>
+        <div class="text-xs text-gray-500">profile??</div>
+        <div class="flex flex-row items-center mt-3">
+          {/* Online Indicator */}
+          <div class="flex flex-col justify-center h-4 w-8 bg-indigo-500 rounded-full">
+            <div class="h-3 w-3 bg-white rounded-full self-end mr-1"></div>
+          </div>
+          <div class="leading-none ml-1 text-xs">Active</div>
+        </div>
+      </div>
+      <header className="p-4 border-b border-gray-300 flex justify-between items-center  text-black ">
+        <h1 className="text-2xl font-semibold ">Tetangga masa kini chatroom</h1>
         <div className="relative">
           <button id="addChat" className="focus:outline-none">
-            add new
+            Add+
           </button>
         </div>
       </header>
+      <div class="flex flex-col mt-8">
+        <div class="flex flex-row items-center justify-between text-xs">
+          <span class="font-bold">Active Conversations</span>
+          <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">
+            4
+          </span>
+        </div>
 
-      <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
-        {rooms &&
-          rooms.map((el, i) => {
-            return (
-              <div
-                key={i}
-                onClick={() => {
-                  handleOnClick(el.email);
-                }}
-              >
-                <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-                  <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
-                    <img
-                      src={el.iconURL}
-                      alt="User Avatar"
-                      className="w-12 h-12 rounded-full"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-lg font-semibold">Rumah {el.name}</h2>
-                    <p className="text-gray-600">testing</p>
+        <div className="overflow-y-auto h-screen p-5 mb-9 sm:mb-0 pb-20">
+          {rooms &&
+            rooms.map((el, i) => {
+              return (
+                <div
+                  key={i}
+                  onClick={() => {
+                    handleOnClick(el.email);
+                  }}
+                >
+                  <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md ">
+                    <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
+                      <img
+                        src={el.iconURL}
+                        alt="User Avatar"
+                        className="w-12 h-12 rounded-full"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h2 className="text-l font-semibold">Rumah {el.name}</h2>
+                      <p className="text-gray-600">Home</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     </div>
   );
