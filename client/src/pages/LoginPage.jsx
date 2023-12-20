@@ -20,21 +20,21 @@ const LoginPage = () => {
     }
   }
   return (
-    <div className="bg-gradient-to-r from-amber-500 to-pink-500">
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="min-h-1/2 bg-gray-900 border border-gray-900 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700">
-          <div className="mx-4 sm:mx-24 md:mx-34 lg:mx-56 flex items-center space-y-4 py-12 font-semibold text-gray-500 flex-col text-center">
+    <div className="min-h-screen bg-gradient-to-tl from-orange-400 to-sky-400 text-gray-100 flex justify-center">
+      <div className="flex min-h-screen items-center justify-center max-w-screen-xl m-0 sm:m-18">
+        <div className=" max-w-screen-xl m-0 sm:m-10 bg-gray-900 border border-gray-900 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-700">
+          <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 mx-4 sm:mx-24 md:mx-34 lg:mx-56 flex items-center space-y-4 py-12 font-semibold text-gray-500 flex-col text-center">
             <img
-              className="h-12 w-12"
+              className="w-16 mx-auto"
               src="https://www.svgrepo.com/show/355037/google.svg"
               alt="Google Logo"
             />
-            <h1 className="text-white text-2xl">
+            <h1 className="text-white text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-sky-400">
               Hello! Login to access your chat!
             </h1>
             <button
               type="submit"
-              className="flex items-center bg-white dark:bg-gray-900 border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 dark:text-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 mx-auto mt-2"
+              className="mt-5 tracking-wide font-semibold bg-sky-800 text-gray-100 w-full py-4 rounded-lg hover:bg-sky-600 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               onClick={handleLogin}
             >
               <img
