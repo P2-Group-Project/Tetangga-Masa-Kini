@@ -12,15 +12,17 @@ import {
 import { db } from "../firebaseConfig";
 import Sidebar from "../components/Sidebar";
 import "../chatContainer.css"
-import data from '@emoji-mart/data'
-import Picker from '@emoji-mart/react'
+
+// import data from '@emoji-mart/data'
+// import Picker from '@emoji-mart/react'
 
 const HomePage = () => {
   const [room, setRoom] = useState(localStorage.email);
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const chatContainerRef = useRef(null)
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
+  // const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
 
   useEffect(() => {
@@ -94,14 +96,16 @@ const HomePage = () => {
 
             {/* Chat Input */}
             <footer className="bg-white fixed bottom-0 w-[1425px]">
-            {showEmojiPicker && (
+
+            {/* {showEmojiPicker && (
               <Picker
                 onSelect={(emoji) => {
                   setNewMessage((prev) => prev + emoji.native);
                   setShowEmojiPicker(false);
                 }}
               />
-            )}
+            )} */}
+            
               <form onSubmit={handleSubmit} className="flex items-center bg-white" id="chatForm">
                 
                 <div className="flex flex-row items-center h-16 bg-white w-full px-4">
@@ -117,7 +121,7 @@ const HomePage = () => {
                         placeholder="Type a message..."
                         className="flex w-full border rounded-xl bg-gray-300 focus:outline-none focus:border-indigo-300 pl-4 h-10 text-black"
                       />
-                       <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-black hover:text-gray-600" onClick={() => setShowEmojiPicker(!showEmojiPicker)}>
+                       <button className="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-black hover:text-gray-600">
                         😃
                       </button>
  
