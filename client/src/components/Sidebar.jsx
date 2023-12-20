@@ -11,6 +11,7 @@ import { db } from "../firebaseConfig";
 
 const Sidebar = ({ changeRoom }) => {
   const [rooms, setRooms] = useState([]);
+  
   // const [currentRoom, setCurrentRoom] = useState(null);
 
   const roomsRef = collection(db, "rooms");
@@ -50,16 +51,21 @@ const Sidebar = ({ changeRoom }) => {
   }, []);
 
   return (
-    <div className="h-full w-full sm:w-1/4 bg-white border-r border-gray-300 ">
+    <div className="md:flex hidden flex-col w-[240px] py-10 px-4 h-full sm:w-1/4 bg-white border-r border-gray-300">
   {/* Sidebar Header */}
-  <header className="p-4 border-b border-gray-300 flex justify-between items-center bg-black text-white">
-    <h1 className="text-2xl font-semibold">Chat Web</h1>
+  <header className="p-4 border-b border-gray-300 flex justify-between items-center  text-black ">
+    <h1 className="text-2xl font-semibold ">Tetangga masa kini chatroom</h1>
     <div className="relative">
       <button id="addChat" className="focus:outline-none">
         add new
       </button>
     </div>
   </header>
+  <div class="flex flex-col mt-8">
+  <div class="flex flex-row items-center justify-between text-xs">
+      <span class="font-bold">Active Conversations</span>
+      <span class="flex items-center justify-center bg-gray-300 h-4 w-4 rounded-full">4</span>
+    </div>
 
   <div className="overflow-y-auto h-screen p-5 mb-9 sm:mb-0 pb-20">
     {rooms &&
@@ -71,7 +77,7 @@ const Sidebar = ({ changeRoom }) => {
               handleOnClick(el.email);
             }}
           >
-            <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
+            <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md ">
               <div className="w-12 h-12 bg-gray-300 rounded-full mr-3">
                 <img
                   src={el.iconURL}
@@ -87,6 +93,7 @@ const Sidebar = ({ changeRoom }) => {
           </div>
         );
       })}
+  </div>
   </div>
 </div>
   );
