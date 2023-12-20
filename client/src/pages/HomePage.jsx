@@ -7,6 +7,7 @@ import {
   onSnapshot,
   query,
   where,
+  orderBy,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import Sidebar from "../components/Sidebar";
@@ -40,7 +41,11 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    const queryMessages = query(messageRef, where("room", "==", room));
+    const queryMessages = query(
+      messageRef,
+      where("room", "==", room),
+      orderBy("createdAt")
+    );
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
