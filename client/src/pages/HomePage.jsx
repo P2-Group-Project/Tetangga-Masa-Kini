@@ -54,13 +54,13 @@ const HomePage = () => {
   return (
     <>
       <div>
-        <div className="flex">
+        <div className="flex rounded-full">
           <Sidebar changeRoom={changeRoom} />
 
           {/* Main Chat Area */}
-          <div className="flex-1">
+          <div className="flex-1 rounded-full">
             {/* Chat Header */}
-            <header className="bg-black p-4 text-white">
+            <header className="bg-black p-4 text-white rounded-full">
               <h1 className="text-2xl font-semibold">{room}</h1>
             </header>
 
