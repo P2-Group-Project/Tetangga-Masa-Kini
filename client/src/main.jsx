@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import store from "./store/index.js";
+import { Provider } from "react-redux";
 
 function authorization() {
   const access_token = localStorage.access_token;
@@ -45,7 +47,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </Provider>
+  // </React.StrictMode>
 );

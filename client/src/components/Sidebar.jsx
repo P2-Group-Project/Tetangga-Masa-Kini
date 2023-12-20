@@ -8,33 +8,35 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { useDispatch } from "react-redux";
+import { changeRoom, findOrCreateRoom } from "../store/appSlice";
 
-const Sidebar = ({ changeRoom }) => {
+const Sidebar = () => {
   const [rooms, setRooms] = useState([]);
 
-  // const [currentRoom, setCurrentRoom] = useState(null);
+  const dispatch = useDispatch();
 
   const roomsRef = collection(db, "rooms");
 
-  async function upsertRoom() {
-    const docRef = doc(db, "rooms", localStorage.email);
-    const docSnap = await getDoc(docRef);
+  // async function findOrCreateRoom() {
+  //   const docRef = doc(db, "rooms", localStorage.email);
+  //   const docSnap = await getDoc(docRef);
 
-    if (!docSnap.exists()) {
-      await setDoc(doc(roomsRef, localStorage.email), {
-        name: localStorage.name,
-        email: localStorage.email,
-        iconURL: localStorage.photo,
-      });
-    }
-  }
+  //   if (!docSnap.exists()) {
+  //     await setDoc(doc(roomsRef, localStorage.email), {
+  //       name: localStorage.name,
+  //       email: localStorage.email,
+  //       iconURL: localStorage.photo,
+  //     });
+  //   }
+  // }
 
   function handleOnClick(email) {
-    changeRoom(email);
+    dispatch(changeRoom(email));
   }
 
   useEffect(() => {
-    upsertRoom();
+    dispatch(findOrCreateRoom());
 
     const queryRooms = query(roomsRef);
     const unsubscribeRooms = onSnapshot(queryRooms, (snapshot) => {

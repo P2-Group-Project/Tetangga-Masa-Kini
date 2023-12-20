@@ -11,17 +11,15 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import Sidebar from "../components/Sidebar";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const [room, setRoom] = useState(localStorage.email);
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const messageRef = collection(db, "messages");
+  const { room } = useSelector((state) => state.appReducer);
 
-  function changeRoom(destination) {
-    setRoom(destination);
-  }
+  const messageRef = collection(db, "messages");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -60,7 +58,7 @@ const HomePage = () => {
     <>
       <div>
         <div className="flex rounded-full">
-          <Sidebar changeRoom={changeRoom} />
+          <Sidebar />
 
           {/* Main Chat Area */}
           <div className="flex-1 rounded-full">
